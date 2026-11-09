@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Buzón de documentos · Contador en tu Bolsillo</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #f8fafc; font-family: Arial, sans-serif; }
+  iframe { border: 0; width: 100%; height: 100%; display: block; }
+  #aviso { display: none; padding: 24px; color: #1e293b; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div id="aviso">
+  <h2>Buzón de documentos</h2>
+  <p>Este enlace está incompleto. Use el enlace personal que le envió su contador.</p>
+</div>
+<script>
+  // Página que muestra el buzón de cada cliente sin el aviso de Google.
+  // Solo pasa el código personal (?t=...) a la aplicación publicada; no guarda nada.
+  var APP = 'https://script.google.com/macros/s/AKfycbwYOI8KobKEHsBZQ6hszVZ4fsNp4Dn-Uu14PGR82G2D4XX2rBVEbeoJHM3_F-6ewqSm/exec';
+  var q = new URLSearchParams(location.search);
+  var t = q.get('t'), panel = q.get('panel');   // t = cliente; panel = contador aliado
+  var ok = /^[A-Za-z0-9_-]{6,120}$/;
+  var destino = (t && ok.test(t)) ? '?t=' + encodeURIComponent(t) : (panel && ok.test(panel)) ? '?panel=' + encodeURIComponent(panel) : '';
+  if (destino) {
+    var f = document.createElement('iframe');
+    f.src = APP + destino;
+    f.title = 'Buzón de documentos';
+    f.allow = 'camera; clipboard-write';
+    document.body.appendChild(f);
+  } else {
+    document.getElementById('aviso').style.display = 'block';
+  }
+</script>
+</body>
+</html>
