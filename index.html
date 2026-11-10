@@ -8,9 +8,17 @@
 <title>Mi Buzón</title>
 <link rel="icon" type="image/png" sizes="180x180" href="icono-180.png">
 <link rel="apple-touch-icon" href="icono-180.png">
-<meta name="apple-mobile-web-app-title" content="Mi Buzón">
-<meta name="application-name" content="Mi Buzón">
+<meta id="m1" name="apple-mobile-web-app-title" content="Mi Buzón">
+<meta id="m2" name="application-name" content="Mi Buzón">
 <meta name="theme-color" content="#1d4ed8">
+<script>
+  // El Panel del contador y el buzón del cliente deben tener nombre distinto en la pantalla de inicio del teléfono.
+  if (new URLSearchParams(location.search).get('panel')) {
+    document.title = 'Panel del contador';
+    document.getElementById('m1').content = 'Panel';
+    document.getElementById('m2').content = 'Panel del contador';
+  }
+</script>
 <style>
   html, body { margin: 0; padding: 0; height: 100%; background: #f8fafc; font-family: Arial, sans-serif; }
   iframe { border: 0; width: 100%; height: 100%; display: block; }
